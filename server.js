@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const { seed } = require("./seed");
 
 const db = require("./app/models");
@@ -10,7 +11,7 @@ var corsOptions = {
   origin: "http://localhost:3000",
 };
 
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.join(__dirname, "./client/build")));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
