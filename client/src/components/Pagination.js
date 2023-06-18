@@ -7,7 +7,6 @@ const Pagination = ({ totalPages, currentPage, totalItems, order_by }) => {
   useEffect(() => {}, [totalItems]);
 
   const handlePagination = (page) => {
-    console.log(order_by);
     dispatch(findAll({ page: page - 1, order_by }));
   };
 

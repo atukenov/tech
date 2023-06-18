@@ -1,12 +1,7 @@
 import axios from "axios";
+import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8000/api/todos/";
-
-const user = JSON.parse(localStorage.getItem("user"));
-
-const config = {
-  headers: { Authorization: `Bearer ${user?.accessToken}` },
-};
 
 const findAll = (params) => {
   const { page, order_by } = params;
@@ -27,7 +22,7 @@ const create = (body) => {
 };
 
 const update = (body) => {
-  return axios.put(API_URL, body, config).then((response) => {
+  return axios.put(API_URL, body, authHeader()).then((response) => {
     return response.data;
   });
 };

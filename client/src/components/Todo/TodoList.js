@@ -57,16 +57,21 @@ const TodoList = () => {
   };
 
   const handleSort = (sortItem) => {
-    console.log(sorting);
     const type = sorting[sortItem] === "ASC" ? "DESC" : "ASC";
-    setSorting({ ...sorting, [sortItem]: type });
+    setSorting({ ...initialValues, [sortItem]: type });
     setOrderBy(`${sortItem}:${type}`);
     dispatch(findAll({ page: currentPage, order_by: `${sortItem}:${type}` }));
   };
 
+  const renderArrows = (type) => {
+    if (type === "ASC") return "🔽";
+    else if (type === "DESC") return "🔼";
+    else return "➖";
+  };
+
   return (
     <div className="container py-5">
-      <div className="d-flex justify-content-center align-items-center flex-column">
+      <div className="d-flex justify-content-center flex-column">
         <h3>Задачи</h3>
         <Formik
           initialValues={initialValues}
@@ -79,20 +84,27 @@ const TodoList = () => {
                 <thead>
                   <tr>
                     <th scope="col" onClick={() => handleSort("username")}>
-                      Имя пользователя
+                      Имя пользователя {renderArrows(sorting.username)}
                     </th>
                     <th scope="col" onClick={() => handleSort("email")}>
-                      Email
+                      Email {renderArrows(sorting.email)}
                     </th>
                     <th scope="col" onClick={() => handleSort("task")}>
-                      Текст задачи
+                      Текст задачи {renderArrows(sorting.task)}
                     </th>
                     <th scope="col">Статус</th>
                   </tr>
                 </thead>
                 <tbody>
                   {todos.map((todo, index) => {
-                    return <TodoItem key={index} todo={todo} />;
+                    return (
+                      <TodoItem
+                        key={index}
+                        todo={todo}
+                        currentPage={currentPage}
+                        order_by={orderBy}
+                      />
+                    );
                   })}
                   {!isLoggedIn ? (
                     <tr>
@@ -113,7 +125,11 @@ const TodoList = () => {
                         />
                       </td>
                       <td>
-                        <Field name="task" placeholder="Текст задачи" />
+                        <Field
+                          as="textarea"
+                          name="task"
+                          placeholder="Текст задачи"
+                        />
                         <ErrorMessage
                           name="task"
                           component="div"

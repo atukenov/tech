@@ -50,8 +50,6 @@ exports.findAll = (req, res) => {
 
   const order = field && orderType ? [[`${field}`, `${orderType}`]] : "";
 
-  console.log(order);
-
   Todo.findAndCountAll({ limit, offset, order })
     .then((data) => {
       const response = getPagingData(data, page, limit);
