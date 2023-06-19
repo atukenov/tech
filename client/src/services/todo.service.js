@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8000/api/todos/";
+const API_URL = "https://tech-ex-61efee9424c2.herokuapp.com/api/todos/";
 
 const findAll = (params) => {
   const { page, order_by } = params;

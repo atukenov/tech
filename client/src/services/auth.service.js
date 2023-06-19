@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api/auth/";
+const API_URL = "https://tech-ex-61efee9424c2.herokuapp.com/api/auth/";
 
 const login = (username, password) => {
   return axios

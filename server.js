@@ -7,12 +7,12 @@ const db = require("./app/models");
 
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:3000",
-};
+// var corsOptions = {
+//   origin: "http://localhost:3000",
+// };
 
 app.use(express.static(path.join(__dirname, "./client/build")));
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
