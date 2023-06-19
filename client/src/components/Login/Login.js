@@ -68,7 +68,7 @@ const Login = () => {
               <ErrorMessage
                 name="username"
                 component="div"
-                className="alert alert-danger"
+                className="text-danger"
               />
             </div>
 
@@ -78,11 +78,11 @@ const Login = () => {
               <ErrorMessage
                 name="password"
                 component="div"
-                className="alert alert-danger"
+                className="text-danger"
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group mt-2">
               <button
                 type="submit"
                 className="btn btn-primary btn-block"
